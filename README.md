@@ -124,7 +124,7 @@ native integration, not a complete or release-ready replacement for the package.
 Promise jobs are drained through the pinned runtime's internal test hook.
 Before publishing, replace that experimental hook with a supported embedding
 API, finish the portable runtime/build distribution, validate the supported
-YouTube operations, and declare a tested minimum Rust version. Crate/repository
+YouTube operations, and declare a tested minimum Rust version. Crate
 name availability has not been checked. The crate has not been published to crates.io.
 
 For development, `task lint` formats before running Clippy, and `task test`

@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 description = "Safe Rust bindings to ahead-of-time compiled youtubei.js"
 license = "MIT"
+repository = "https://github.com/meoyawn/youtubei-native"
 readme = "README.md"
 include = ["/src/**", "/js/**", "/scripts/**", "/examples/**", "/build.rs", "/Cargo.toml", "/Cargo.lock", "/package.json", "/nub.lock", "/README.md", "/BENCHMARKS.md", "/benchmark-results.json", "/LICENSE", "/THIRD_PARTY.md", "/Taskfile.yaml"]
 
