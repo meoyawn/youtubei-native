@@ -1,0 +1,19 @@
+{
+  "name": "youtubei-native-build",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "youtubei.js": "18.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.0"
+  },
+  "packageManager": "nub@0.9.2",
+  "devEngines": {
+    "packageManager": {
+      "name": "nub",
+      "version": "^0.9.2",
+      "onFail": "ignore"
+    }
+  }
+}

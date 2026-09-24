@@ -1,0 +1,12 @@
+version: "3"
+
+tasks:
+  lint:
+    desc: Format and lint the Rust crate
+    cmds:
+      - cargo fmt --all
+      - cargo clippy --all-targets -- -D warnings
+
+  test:
+    desc: Exercise native calls, ownership, errors, HTTP, and continuations
+    cmd: cargo test -- --nocapture

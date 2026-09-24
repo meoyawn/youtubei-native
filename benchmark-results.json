@@ -1,0 +1,438 @@
+{
+  "history": [
+    {
+      "measured_at": "2026-09-24T18:45:49.155816+00:00",
+      "platform": "macOS-26.4-arm64-arm-64bit",
+      "profile": "Rust dev, debug=0; Hermes JS and native C at -O0; existing QuickJS/LLRT defaults",
+      "youtubei": "18.1.0",
+      "playlist": "PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT",
+      "title": "Tim Ventura Interviews",
+      "entries": 504,
+      "deadline_seconds_per_process": 60,
+      "notes": [
+        "Live network; alternating order; no concurrent benchmark processes",
+        "Two complete scans per fresh process; QuickJS's first scan includes asynchronous worker initialization",
+        "Original QuickJS worker/bridge, matched package version; native public Rust playlist API",
+        "QuickJS caches its remotely initialized session; Hermes generates a local session per scan",
+        "Size is the standalone runner with its runtime and host libraries, excluding desktop UI/media app dependencies",
+        "IDs/order checked against all yt-dlp continuation pages; common entry fields checked across engines"
+      ],
+      "engines": {
+        "quickjs": {
+          "binary_bytes": 42359056,
+          "binary_sha256": "c341fe306196efbceb424e8bc0b0604a2227a24fcb19e0ad1856528d502b3f80",
+          "runs": [
+            {
+              "wall_seconds": 8.240681,
+              "cpu_seconds": 3.2199999999999998,
+              "peak_rss_bytes": 71794688,
+              "first_scan_ms": 4184.546416,
+              "second_scan_ms": 3289.5645409999997,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 7.496602833999997,
+              "cpu_seconds": 2.95,
+              "peak_rss_bytes": 70467584,
+              "first_scan_ms": 3832.6608330000004,
+              "second_scan_ms": 3605.931833,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 7.346898207999999,
+              "cpu_seconds": 3.11,
+              "peak_rss_bytes": 71598080,
+              "first_scan_ms": 3984.403291,
+              "second_scan_ms": 3338.073625,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 7.496602833999997,
+            "cpu_seconds": 3.11,
+            "peak_rss_bytes": 71598080,
+            "first_scan_ms": 3984.403291,
+            "second_scan_ms": 3338.073625,
+            "unavailable": 4
+          }
+        },
+        "hermes": {
+          "binary_bytes": 26860224,
+          "binary_sha256": "3ca6c88d6b5f33164d410b989b08eefab03614bf41e283fc1fd79043ed7d742d",
+          "runs": [
+            {
+              "wall_seconds": 10.095175667,
+              "cpu_seconds": 3.33,
+              "peak_rss_bytes": 73793536,
+              "first_scan_ms": 4723.400417000001,
+              "second_scan_ms": 4758.375166000001,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 9.253139041999997,
+              "cpu_seconds": 3.4,
+              "peak_rss_bytes": 79953920,
+              "first_scan_ms": 4688.4945,
+              "second_scan_ms": 4534.042875,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 9.569472957999999,
+              "cpu_seconds": 3.3699999999999997,
+              "peak_rss_bytes": 74481664,
+              "first_scan_ms": 4776.314,
+              "second_scan_ms": 4726.53825,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 9.569472957999999,
+            "cpu_seconds": 3.3699999999999997,
+            "peak_rss_bytes": 74481664,
+            "first_scan_ms": 4723.400417000001,
+            "second_scan_ms": 4726.53825,
+            "unavailable": 4
+          }
+        }
+      },
+      "stage": "development, text responses, client per request"
+    },
+    {
+      "measured_at": "2026-09-24T18:51:14.638142+00:00",
+      "platform": "macOS-26.4-arm64-arm-64bit",
+      "profile": "Rust release; Hermes -O0; pooled reqwest; default 32 MiB initial heap",
+      "youtubei": "18.1.0",
+      "playlist": "PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT",
+      "title": "Tim Ventura Interviews",
+      "entries": 504,
+      "deadline_seconds_per_process": 60,
+      "notes": [
+        "Live network; alternating order; no concurrent benchmark processes",
+        "Two complete scans per fresh process; QuickJS's first scan includes asynchronous worker initialization",
+        "Original QuickJS worker/bridge, matched package version; native public Rust playlist API",
+        "QuickJS caches its remotely initialized session; Hermes generates a local session per scan",
+        "Size is the standalone runner with its runtime and host libraries, excluding desktop UI/media app dependencies",
+        "IDs/order checked against all yt-dlp continuation pages; common entry fields checked across engines"
+      ],
+      "engines": {
+        "quickjs": {
+          "binary_bytes": 17783280,
+          "binary_sha256": "6c31a19e794fa29e1e4b9c5bf21533a96c6e0d9f699e67be9ac38f61a6b39d81",
+          "runs": [
+            {
+              "wall_seconds": 5.362083209000001,
+              "cpu_seconds": 0.81,
+              "peak_rss_bytes": 74956800,
+              "first_scan_ms": 2692.920917,
+              "second_scan_ms": 2017.5351660000001,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 5.362083209000001,
+            "cpu_seconds": 0.81,
+            "peak_rss_bytes": 74956800,
+            "first_scan_ms": 2692.920917,
+            "second_scan_ms": 2017.5351660000001,
+            "unavailable": 4
+          }
+        },
+        "hermes": {
+          "binary_bytes": 19825168,
+          "binary_sha256": "75d5f55bc5d78ccf9635a59ec3b00305a115be3fd179dfb3954ba4ffc11d9ee1",
+          "runs": [
+            {
+              "wall_seconds": 6.569609625,
+              "cpu_seconds": 2.2800000000000002,
+              "peak_rss_bytes": 80576512,
+              "first_scan_ms": 3162.639876,
+              "second_scan_ms": 2843.733291,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 6.569609625,
+            "cpu_seconds": 2.2800000000000002,
+            "peak_rss_bytes": 80576512,
+            "first_scan_ms": 3162.639876,
+            "second_scan_ms": 2843.733291,
+            "unavailable": 4
+          }
+        }
+      },
+      "stage": "release, pooled HTTP, native O0 (one run)"
+    },
+    {
+      "measured_at": "2026-09-24T18:53:31.439054+00:00",
+      "platform": "macOS-26.4-arm64-arm-64bit",
+      "profile": "Rust release; Hermes -O with native C -O1; pooled reqwest; default 32 MiB initial heap",
+      "youtubei": "18.1.0",
+      "playlist": "PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT",
+      "title": "Tim Ventura Interviews",
+      "entries": 504,
+      "deadline_seconds_per_process": 60,
+      "notes": [
+        "Live network; alternating order; no concurrent benchmark processes",
+        "Two complete scans per fresh process; QuickJS's first scan includes asynchronous worker initialization",
+        "Original QuickJS worker/bridge, matched package version; native public Rust playlist API",
+        "QuickJS caches its remotely initialized session; Hermes generates a local session per scan",
+        "Size is the standalone runner with its runtime and host libraries, excluding desktop UI/media app dependencies",
+        "IDs/order checked against all yt-dlp continuation pages; common entry fields checked across engines"
+      ],
+      "engines": {
+        "quickjs": {
+          "binary_bytes": 17783280,
+          "binary_sha256": "6c31a19e794fa29e1e4b9c5bf21533a96c6e0d9f699e67be9ac38f61a6b39d81",
+          "runs": [
+            {
+              "wall_seconds": 5.382069084,
+              "cpu_seconds": 0.86,
+              "peak_rss_bytes": 69877760,
+              "first_scan_ms": 3090.664791,
+              "second_scan_ms": 2230.535625,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 5.382069084,
+            "cpu_seconds": 0.86,
+            "peak_rss_bytes": 69877760,
+            "first_scan_ms": 3090.664791,
+            "second_scan_ms": 2230.535625,
+            "unavailable": 4
+          }
+        },
+        "hermes": {
+          "binary_bytes": 15483952,
+          "binary_sha256": "9f77945750c549465736453f17febc0df4b12c80b3607e6b2c550fd045aab7b6",
+          "runs": [
+            {
+              "wall_seconds": 5.4170985,
+              "cpu_seconds": 1.1700000000000002,
+              "peak_rss_bytes": 75923456,
+              "first_scan_ms": 2733.308251,
+              "second_scan_ms": 2190.0022080000003,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 5.4170985,
+            "cpu_seconds": 1.1700000000000002,
+            "peak_rss_bytes": 75923456,
+            "first_scan_ms": 2733.308251,
+            "second_scan_ms": 2190.0022080000003,
+            "unavailable": 4
+          }
+        }
+      },
+      "stage": "release, pooled HTTP, native O1, 32 MiB heap (one run)"
+    },
+    {
+      "measured_at": "2026-09-24T18:54:40.617906+00:00",
+      "platform": "macOS-26.4-arm64-arm-64bit",
+      "profile": "Rust release; Hermes -O with native C -O1; pooled reqwest; 8 MiB initial heap",
+      "youtubei": "18.1.0",
+      "playlist": "PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT",
+      "title": "Tim Ventura Interviews",
+      "entries": 504,
+      "deadline_seconds_per_process": 60,
+      "notes": [
+        "Live network; alternating order; no concurrent benchmark processes",
+        "Two complete scans per fresh process; QuickJS's first scan includes asynchronous worker initialization",
+        "Original QuickJS worker/bridge, matched package version; native public Rust playlist API",
+        "QuickJS caches its remotely initialized session; Hermes generates a local session per scan",
+        "Size is the standalone runner with its runtime and host libraries, excluding desktop UI/media app dependencies",
+        "IDs/order checked against all yt-dlp continuation pages; common entry fields checked across engines"
+      ],
+      "engines": {
+        "quickjs": {
+          "binary_bytes": 17783280,
+          "binary_sha256": "6c31a19e794fa29e1e4b9c5bf21533a96c6e0d9f699e67be9ac38f61a6b39d81",
+          "runs": [
+            {
+              "wall_seconds": 4.794835459,
+              "cpu_seconds": 0.8,
+              "peak_rss_bytes": 70090752,
+              "first_scan_ms": 2630.7109579999997,
+              "second_scan_ms": 2127.399958,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 4.833545749999999,
+              "cpu_seconds": 0.71,
+              "peak_rss_bytes": 63438848,
+              "first_scan_ms": 2569.1147920000003,
+              "second_scan_ms": 2195.214375,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 4.926210958999999,
+              "cpu_seconds": 0.76,
+              "peak_rss_bytes": 67403776,
+              "first_scan_ms": 2711.875167,
+              "second_scan_ms": 2160.4689590000003,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 4.833545749999999,
+            "cpu_seconds": 0.76,
+            "peak_rss_bytes": 67403776,
+            "first_scan_ms": 2630.7109579999997,
+            "second_scan_ms": 2160.4689590000003,
+            "unavailable": 4
+          }
+        },
+        "hermes": {
+          "binary_bytes": 15483952,
+          "binary_sha256": "f79c00b93074ad52b72b272cc33945825b9bc4e5baa8b04a26508d1759398361",
+          "runs": [
+            {
+              "wall_seconds": 5.5794936250000005,
+              "cpu_seconds": 1.21,
+              "peak_rss_bytes": 69091328,
+              "first_scan_ms": 2679.688459,
+              "second_scan_ms": 2356.0522499999997,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 4.9292897920000005,
+              "cpu_seconds": 1.18,
+              "peak_rss_bytes": 72499200,
+              "first_scan_ms": 2462.116083,
+              "second_scan_ms": 2404.1169999999997,
+              "unavailable": 4
+            },
+            {
+              "wall_seconds": 5.176500832999999,
+              "cpu_seconds": 1.1300000000000001,
+              "peak_rss_bytes": 74940416,
+              "first_scan_ms": 2693.7327089999994,
+              "second_scan_ms": 2430.648375,
+              "unavailable": 4
+            }
+          ],
+          "median": {
+            "wall_seconds": 5.176500832999999,
+            "cpu_seconds": 1.18,
+            "peak_rss_bytes": 72499200,
+            "first_scan_ms": 2679.688459,
+            "second_scan_ms": 2404.1169999999997,
+            "unavailable": 4
+          }
+        }
+      },
+      "stage": "release, pooled HTTP, native O1, 8 MiB heap"
+    }
+  ],
+  "final": {
+    "measured_at": "2026-09-24T18:59:11.921934+00:00",
+    "platform": "macOS-26.4-arm64-arm-64bit",
+    "profile": "Rust release; Hermes -O with native C -O1; pooled reqwest; 8 MiB initial heap; bulk native UTF-8 copy",
+    "youtubei": "18.1.0",
+    "playlist": "PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT",
+    "title": "Tim Ventura Interviews",
+    "entries": 504,
+    "deadline_seconds_per_process": 60,
+    "notes": [
+      "Live network; alternating order; no concurrent benchmark processes",
+      "Two complete scans per fresh process; QuickJS's first scan includes asynchronous worker initialization",
+      "Original QuickJS worker/bridge, matched package version; native public Rust playlist API",
+      "QuickJS caches its remotely initialized session; Hermes generates a local session per scan",
+      "Size is the standalone runner with its runtime and host libraries, excluding desktop UI/media app dependencies",
+      "IDs/order checked against all yt-dlp continuation pages; common entry fields checked across engines"
+    ],
+    "engines": {
+      "quickjs": {
+        "binary_bytes": 17783280,
+        "binary_sha256": "6c31a19e794fa29e1e4b9c5bf21533a96c6e0d9f699e67be9ac38f61a6b39d81",
+        "runs": [
+          {
+            "wall_seconds": 4.850830665999999,
+            "cpu_seconds": 0.84,
+            "peak_rss_bytes": 71008256,
+            "first_scan_ms": 2551.114167,
+            "second_scan_ms": 2254.170791,
+            "unavailable": 4
+          },
+          {
+            "wall_seconds": 5.168765707999999,
+            "cpu_seconds": 0.87,
+            "peak_rss_bytes": 69582848,
+            "first_scan_ms": 2831.784416,
+            "second_scan_ms": 2288.244041,
+            "unavailable": 4
+          },
+          {
+            "wall_seconds": 4.7472874590000025,
+            "cpu_seconds": 0.86,
+            "peak_rss_bytes": 67813376,
+            "first_scan_ms": 2686.020875,
+            "second_scan_ms": 2017.524292,
+            "unavailable": 4
+          }
+        ],
+        "median": {
+          "wall_seconds": 4.850830665999999,
+          "cpu_seconds": 0.86,
+          "peak_rss_bytes": 69582848,
+          "first_scan_ms": 2686.020875,
+          "second_scan_ms": 2254.170791,
+          "unavailable": 4
+        }
+      },
+      "hermes": {
+        "binary_bytes": 15484176,
+        "binary_sha256": "afb284f1ad37d6bee23720985cdd68b999af59c2205494bbb697f1d418eae23c",
+        "runs": [
+          {
+            "wall_seconds": 4.918866834,
+            "cpu_seconds": 0.77,
+            "peak_rss_bytes": 72794112,
+            "first_scan_ms": 2292.9169589999997,
+            "second_scan_ms": 2048.747708,
+            "unavailable": 4
+          },
+          {
+            "wall_seconds": 4.657896042000001,
+            "cpu_seconds": 0.75,
+            "peak_rss_bytes": 78381056,
+            "first_scan_ms": 2522.411583,
+            "second_scan_ms": 2071.7072500000004,
+            "unavailable": 4
+          },
+          {
+            "wall_seconds": 4.4714065000000005,
+            "cpu_seconds": 0.75,
+            "peak_rss_bytes": 79953920,
+            "first_scan_ms": 2265.0924999999997,
+            "second_scan_ms": 2163.589625,
+            "unavailable": 4
+          }
+        ],
+        "median": {
+          "wall_seconds": 4.657896042000001,
+          "cpu_seconds": 0.75,
+          "peak_rss_bytes": 78381056,
+          "first_scan_ms": 2292.9169589999997,
+          "second_scan_ms": 2071.7072500000004,
+          "unavailable": 4
+        }
+      }
+    },
+    "stage": "release, pooled HTTP, native O1, 8 MiB heap, bulk UTF-8 copy"
+  },
+  "builds": {
+    "quickjs": {
+      "seconds": 4.239359917000001,
+      "status": 0,
+      "scope": "Forced original bridge bundle plus release Rust runner rebuild; dependencies cached"
+    },
+    "hermes": {
+      "native_pipeline_seconds": 43.335500831,
+      "final_release_rebuild_seconds": 43.746443583,
+      "native_archive_bytes": 10084872,
+      "dependencies": "preinstalled"
+    }
+  }
+}

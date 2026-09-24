@@ -1,0 +1,17 @@
+[package]
+name = "youtubei-native"
+version = "0.1.0"
+edition = "2024"
+description = "Safe Rust bindings to ahead-of-time compiled youtubei.js"
+license = "MIT"
+readme = "README.md"
+include = ["/src/**", "/js/**", "/scripts/**", "/examples/**", "/build.rs", "/Cargo.toml", "/Cargo.lock", "/package.json", "/nub.lock", "/README.md", "/BENCHMARKS.md", "/benchmark-results.json", "/LICENSE", "/THIRD_PARTY.md", "/Taskfile.yaml"]
+
+[dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls", "gzip", "brotli"] }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+url = "2"
+
+[profile.dev]
+debug = 0
