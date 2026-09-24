@@ -1,10 +1,16 @@
 # QuickJS comparison
 
-The workload is two complete, anonymous flat scans of **Tim Ventura Interviews**
+**A scan means fetching a complete flat playlist listing**, including every
+continuation page. It returns entry IDs and available listing metadata, without
+fetching individual video details, resolving media URLs, or downloading media.
+
+The workload is two complete, anonymous flat playlist listings of
+**Tim Ventura Interviews**
 (`PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT`): 504 entries across continuation pages,
 including four unavailable placeholders. Every scan must match yt-dlp's complete
 flat ID sequence. Both engines must also match title, duration, and availability.
-Neither expands videos or downloads media. Both use youtubei.js **18.1.0**.
+Both use youtubei.js **18.1.0**. Each process makes fresh playlist requests for
+the second listing; it does not just return the first listing's saved results.
 
 Measurements use macOS 26.4 / Apple Silicon, Rust 1.96, fresh processes, alternating
 engine order, and three runs each unless indicated otherwise. Each process is
@@ -41,9 +47,9 @@ Before that final string-copy change, three-run **release** medians were:
 
 | Measurement | QuickJS | Hermes |
 | --- | ---: | ---: |
-| First complete scan, including startup | 2.63 s | 2.68 s |
-| Second complete scan | 2.16 s | 2.40 s |
-| Process CPU time, both scans | 0.76 s | 1.18 s |
+| First complete flat playlist listing, including startup | 2.63 s | 2.68 s |
+| Second complete flat playlist listing in the same process | 2.16 s | 2.40 s |
+| Process CPU time, both listings | 0.76 s | 1.18 s |
 | Peak RSS | 64.3 MiB | 69.1 MiB |
 | Executable size | 16.96 MiB | 14.77 MiB |
 
@@ -64,20 +70,21 @@ C++ runtime, GC, interpreter, and bytecode for internal built-ins.
 
 ## Final comparison
 
-After bulk UTF-8 transfer, the final three-run release medians are:
+After bulk UTF-8 transfer, the final release comparison is:
 
 | Measurement | QuickJS | Hermes |
 | --- | ---: | ---: |
-| First complete scan, including startup | 2.69 s | 2.29 s |
-| Second complete scan | 2.25 s | 2.07 s |
-| Whole process wall time, both scans | 4.85 s | 4.66 s |
-| Whole process CPU time, both scans | 0.86 s | 0.75 s |
+| First complete flat playlist listing, including startup | 2.69 s | 2.29 s |
+| Second complete flat playlist listing in the same process | 2.25 s | 2.07 s |
+| Whole process wall time, both listings | 4.85 s | 4.66 s |
+| Whole process CPU time, both listings | 0.86 s | 0.75 s |
 | Peak RSS | 66.4 MiB | 74.8 MiB |
 | Executable size | 16.96 MiB | 14.77 MiB |
 | Forced bundle + release runner rebuild, cached dependencies | 4.24 s | 43.75 s |
 
-The rebuild measurements include the JS build and Rust runner. The QuickJS
-measurement forces the original build script to rerun; it embeds JS source.
+Runtime timings and peak RSS are medians of three runs. Rebuild measurements
+are individual forced builds and include the JS build and Rust runner. The
+QuickJS measurement forces the original build script to rerun; it embeds JS source.
 Hermes additionally produces native machine code. Compiler/runtime installation
 and first-time Rust dependency compilation are excluded from both figures.
 

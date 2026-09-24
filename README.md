@@ -2,9 +2,9 @@
 
 **Experimental artifact.** The initial integration failed its performance goal
 against QuickJS. After profiling and optimization, this sample produces a smaller
-binary and modestly faster flat scans, but still uses more RAM and takes longer
-to rebuild. See the [full comparison and limitations](BENCHMARKS.md). It has not
-established an overall replacement for QuickJS.
+binary and modestly faster flat playlist listings, but still uses more RAM and
+takes longer to rebuild. See the [full comparison and limitations](BENCHMARKS.md).
+It has not established an overall replacement for QuickJS.
 
 An experimental safe Rust API over **youtubei.js 18.1.0 compiled to native C**
 with Static Hermes. No QuickJS, Node subprocess, or handwritten C/C++ shim is
@@ -22,6 +22,54 @@ for video in youtube.playlist("PLAYLIST_ID")? {
 }
 # Ok::<(), youtubei_native::Error>(())
 ```
+
+## QuickJS comparison
+
+**A scan is one complete flat playlist listing:** fetch the playlist's first
+page and every continuation page, then return entry IDs and available listing
+metadata such as titles, durations, and availability. It does not fetch
+individual video details, resolve media URLs, or download audio/video.
+
+The measured playlist was
+[Tim Ventura Interviews](https://www.youtube.com/playlist?list=PLipBN7O7_H3oq9oDRWagdZUoBOV81GCkT),
+with **504 entries**, including four unavailable placeholders, on 2026-09-24.
+Both implementations matched yt-dlp's complete flat ID sequence and order, and
+agreed with each other on titles, durations, and availability.
+
+Both used youtubei.js **18.1.0**, Rust release builds, and the same Apple Silicon
+Mac running macOS 26.4 / Rust 1.96. Each fresh process fetched the entire listing
+twice; the second pass made fresh playlist requests using the same running
+integration. Three processes per engine ran in alternating order.
+
+| Measurement | Original QuickJS integration | Optimized Hermes |
+| --- | ---: | ---: |
+| First complete flat playlist listing, including startup | 2.69 s | 2.29 s |
+| Second complete flat playlist listing in the same process | 2.25 s | 2.07 s |
+| Process CPU time, both listings | 0.86 s | 0.75 s |
+| Peak process RAM (RSS), both listings | 66.4 MiB | 74.8 MiB |
+| Standalone executable size | 16.96 MiB | 14.77 MiB |
+| Bundle + release runner rebuild, dependencies cached | 4.24 s | 43.75 s |
+
+Runtime timings and peak RAM are medians of the three runs. Rebuild timings are
+individual forced builds, including bundling and the Rust runner; they exclude
+initial compiler/runtime installation and first-time dependency compilation.
+Executable sizes include each runtime and its host libraries, without the rest
+of the desktop application.
+
+The optimized Hermes integration was modestly faster and produced a smaller
+executable **in this sample**, but used more RAM and took roughly **10× longer
+to rebuild**. The initial development build took about 15 seconds per listing
+and 512 MiB; replacing JSON byte-array transport with text, pooling HTTP,
+optimizing native code, reducing the initial heap, and copying UTF-8 in bulk
+removed substantial adapter overhead.
+
+These are live-network measurements of two integrations. QuickJS uses async
+HTTP and caches a remotely initialized session; Hermes uses blocking HTTP and
+generates local sessions without fetching config/player code. QuickJS also
+normalizes listing age labels to approximate dates; Hermes retains the labels.
+Three repetitions do not establish a general engine performance winner. See
+[methodology and optimization history](BENCHMARKS.md) and
+[individual runs and build measurements](benchmark-results.json).
 
 ## Boundary and ownership
 
@@ -122,8 +170,8 @@ response bodies are outside the supported listing API. This is a proof of the
 native integration, not a complete or release-ready replacement for the package.
 
 Promise jobs are drained through the pinned runtime's internal test hook.
-Before publishing, replace that experimental hook with a supported embedding
-API, finish the portable runtime/build distribution, validate the supported
+Before a production crate release, replace that experimental hook with a
+supported embedding API, finish the portable runtime/build distribution, validate the supported
 YouTube operations, and declare a tested minimum Rust version. Crate
 name availability has not been checked. The crate has not been published to crates.io.
 
@@ -143,3 +191,27 @@ in the benchmark history.
 live flat scans and emits their entries and timings as JSON. It includes no
 cookies or authentication. The first measurement should include `startup_ms`
 when comparing it with an integration that initializes its engine lazily.
+
+## Next experiment: generate Rust directly
+
+The follow-up project, `youtubei-rust-compiler`, aims to compile one complete
+ECMAScript module bundle into a safe Rust crate, preserving its exports and
+async behavior. Esbuild includes youtubei.js and its transitive dependencies;
+generated code should use async `reqwest`, `url`, and other Rust libraries only
+for host APIs the bundle needs. The intended output has no QuickJS, Hermes,
+JavaScript interpreter, or intermediate C ABI.
+
+At the comparison handoff, that project had a tested ESM parsing and binding
+analysis frontend for **17.2.0, 18.0.0, and 18.1.0**.
+**Rust code generation was not implemented.** Parsing the bundles does not
+establish a working generated crate; there is no third runtime result in this
+comparison yet.
+
+For each version, the generated crate must fetch
+[this required playlist](https://www.youtube.com/playlist?list=PL13A9D0E9048D3941)
+through its public Rust API and match fresh yt-dlp flat-playlist output: the
+complete entry count, IDs, order, and available listing metadata. It must follow
+every continuation page and retain unavailable placeholders, without per-video
+lookups or media downloads. The larger 504-entry comparison workload must also
+be repeated before comparing its runtime properties and rebuild time with
+QuickJS and Hermes. These are acceptance requirements, not completed results.
